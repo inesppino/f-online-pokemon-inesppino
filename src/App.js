@@ -42,27 +42,28 @@ class App extends Component {
   }
 
   render() {
-    const { pokeList } = this.state;
     return (
-      <div className="app">
-        <main className="app__main">
-          <div className="app__main-wrapper">
-          <div className="filter__wrapper">
+        <main className="main">
+          <div className="triangle t-left"></div>
+          <div className="triangle t-right"></div>
+          <div className="circle c-left"></div>
+          <div className="circle c-right"></div>
+          <div className="main-wrapper">
+          <div className="filter-wrapper">
             <label htmlFor="filter">
               <input id="filter" type="text" placeholder="Filtra pokemons por nombre..." onKeyUp={this.getFilter} />
             </label>
           </div>
           <button onClick={this.paintPokemonList}>PULSA AQUI</button>
-            <ul className="app__main-list">
+            <ul className="main-list">
             {this.filterPokemons().map(pokemon => {
               return (
-                <li key={pokemon.id}>{pokemon.name}</li>
+                <li className="main-list-item" key={pokemon.id}>{pokemon.name}</li>
               )
             })}
             </ul>
           </div>
         </main>
-      </div>
     );
   }
 }
