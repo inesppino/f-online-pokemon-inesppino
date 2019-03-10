@@ -1,8 +1,16 @@
-.main {
+*{
+  margin: 0;
+  background-color: yellow;
+}
+.page{
   text-align: center;
   background-color: yellow;
-  height: 100vh;
+  min-height: 100vh;
   position: relative;
+}
+
+.main{
+  height:90vh;
 }
 
 .circle {
@@ -52,19 +60,25 @@
   padding: 10px;
   width: 500px;
   text-align: center;
+  background-color: white;
 }
 
 .main-list{
-  background-color: yellow;
   list-style: none;
-  padding: 20px;
+  padding: 50px;
   margin: 0px 50px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 50px;
+  background-color: yellow; 
 }
 
 .main-list-item{
   padding: 5px;
   border: 2px solid silver;
+  z-index: 4;
+}
+
+.pokemon__types{
+  list-style: none;
 }
