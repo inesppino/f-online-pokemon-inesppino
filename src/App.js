@@ -6,6 +6,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      havePokemons: false,
       pokeList: [],
       query: '',
     };
@@ -14,12 +15,28 @@ class App extends Component {
     this.getFilter = this.getFilter.bind(this);
     this.filterPokemons = this.filterPokemons.bind(this);
     this.getPokemons = this.getPokemons.bind(this);
-
+    this.getSavedLocalStorage = this.getSavedLocalStorage.bind(this);
   }
 
-  // componentDidMount() {
-  //   this.paintPokemonList();
-  // }
+  componentDidMount() {
+    this.getSavedLocalStorage();
+  }
+
+  saveLocalStorage(idNumber, pokeList){
+    localStorage.setItem(pokeList, JSON.stringify(idNumber))
+  }
+  
+  getSavedLocalStorage(){
+    if(localStorage.getItem('poke') !== null){
+      const savePokemon = JSON.parse(localStorage.getItem('poke'));
+      this.setState({
+        pokeList: savePokemon,
+        havePokemons: true
+      })
+    } else {
+      this.paintPokemonList();
+    }
+  }
 
   paintPokemonList() {
     let pokemonUrl = [];
@@ -31,7 +48,8 @@ class App extends Component {
           this.getPokemons(pokemonUrl);
         })
       });
-    });
+    })
+    .catch(error => alert(`Ha ocurrido un error: ${error}`));
   }
 
   getPokemons(data){
@@ -53,11 +71,14 @@ class App extends Component {
       pokemonData.push(pokemonJson);
 
       this.setState({
-        pokeList: pokemonData.sort(((a, b) => a.id - b.id))
+        pokeList: pokemonData.sort(((a, b) => a.id - b.id)),
+        havePokemons: true
       })
 
       return pokemonData;
     });
+    
+    this.saveLocalStorage(this.state.pokeList,'pokeList');
   }
 
   getFilter(e){
@@ -90,18 +111,21 @@ class App extends Component {
                 <input id="filter" type="text" placeholder="Filtra pokemons por nombre..." onKeyUp={this.getFilter} />
               </label>
             </div>
-            <button onClick={this.paintPokemonList}>PULSA AQUI</button>
               <ul className="main-list">
               {this.filterPokemons().map(pokemon => {
                 return (
                   <li className="main-list-item" key={pokemon.id}>
                     <div className="pokemon__wrapper">
-                      <img className="pokemon__image" src={pokemon.image} alt={pokemon.name}></img>
-                      <div className="pokemon__id">ID / {pokemon.id}</div>
-                      <h2 className="pokemon__name">{pokemon.name}</h2>
-                      <ul className="pokemon__types">{pokemon.type.map((i, k) => { 
+                      <div className="pokemon__wrapper-fist">
+                        <img className="pokemon__image" src={pokemon.image} alt={pokemon.name}></img>
+                        <p className="pokemon__id">ID / {pokemon.id}</p>
+                      </div>
+                      <div className="pokemon__wrapper-second">
+                        <h2 className="pokemon__name">{pokemon.name}</h2>
+                        <ul className="pokemon__types">{pokemon.type.map((i, k) => { 
                         return <li className="pokemon__types-item" key={k}>{i}</li> 
                         })}</ul>
+                      </div>
                     </div>
                   </li>
                 )
@@ -109,7 +133,8 @@ class App extends Component {
               </ul>
             </div>
           </main>
-          <footer>
+          <footer className="footer">
+            <p className="footer-content">Inés Pedraza &copy;2019</p>
             <div className="circle c-left"></div>
             <div className="circle c-right"></div>
           </footer>
