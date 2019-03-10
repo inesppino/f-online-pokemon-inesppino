@@ -6,9 +6,9 @@ class Filter extends Component {
     const { getFilter } = this.props;
 
     return (
-      <div className="filter__wrapper">
+      <div className="filter-wrapper">
         <label htmlFor="filter">
-          <input id="filter" type="text" placeholder="Buscar..." onKeyUp={getFilter} />
+          <input id="filter" type="text" placeholder="Filtra pokemons por nombre..." onKeyUp={getFilter} />
         </label>
       </div>
     );
