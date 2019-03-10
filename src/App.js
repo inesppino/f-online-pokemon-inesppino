@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 import { PokeApi } from './services/PokeApi';
+import Header from './components/layout/Header';
+import Footer from './components/layout/Footer';
+import Main from './components/layout/Main';
 
 class App extends Component {
   constructor(props) {
@@ -100,44 +103,9 @@ class App extends Component {
     return (
       <React.Fragment>
         <div className="page">
-          <header>
-            <div className="triangle t-left"></div>
-            <div className="triangle t-right"></div>
-          </header>
-          <main className="main">
-            <div className="main-wrapper">
-            <div className="filter-wrapper">
-              <label htmlFor="filter">
-                <input id="filter" type="text" placeholder="Filtra pokemons por nombre..." onKeyUp={this.getFilter} />
-              </label>
-            </div>
-              <ul className="main-list">
-              {this.filterPokemons().map(pokemon => {
-                return (
-                  <li className="main-list-item" key={pokemon.id}>
-                    <div className="pokemon__wrapper">
-                      <div className="pokemon__wrapper-fist">
-                        <img className="pokemon__image" src={pokemon.image} alt={pokemon.name}></img>
-                        <p className="pokemon__id">ID / {pokemon.id}</p>
-                      </div>
-                      <div className="pokemon__wrapper-second">
-                        <h2 className="pokemon__name">{pokemon.name}</h2>
-                        <ul className="pokemon__types">{pokemon.type.map((i, k) => { 
-                        return <li className="pokemon__types-item" key={k}>{i}</li> 
-                        })}</ul>
-                      </div>
-                    </div>
-                  </li>
-                )
-              })}
-              </ul>
-            </div>
-          </main>
-          <footer className="footer">
-            <p className="footer-content">Inés Pedraza &copy;2019</p>
-            <div className="circle c-left"></div>
-            <div className="circle c-right"></div>
-          </footer>
+          <Header />
+          <Main filterPokemons={this.filterPokemons()} getFilter={this.getFilter}/>
+          <Footer />
         </div>
       </React.Fragment>
     );
