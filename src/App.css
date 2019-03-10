@@ -1,33 +1,135 @@
-.App {
+*{
+  margin: 0;
+}
+.page{
   text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
+  background-color: yellow;
   min-height: 100vh;
+  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.main{
+  flex-grow: 1;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.circle {
+  position: fixed;
+  background-color: red;
+  width: 100px; 
+  height: 100px;
+}
+
+.c-left{
+  left: 0;
+  bottom: 0;
+  border-radius: 0 100% 0 0;
+}
+
+.c-right{
+  right: 0;
+  bottom: 0;
+  border-radius: 100% 0 0 0;
+}
+
+.triangle {
+  position: fixed;
+}
+
+.t-left{
+ left: 0;
+ border-right: 30px solid transparent;
+ border-top: 30px solid black;
+ border-left: 30px solid black;
+ border-bottom: 30px solid transparent;
+}
+
+.t-right{
+  right: 0;
+  border-right: 30px solid black;
+  border-top: 30px solid black;
+  border-left: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+}
+
+.filter-wrapper{
+  padding: 20px 0px;
+}
+
+#filter{
+  padding: 10px;
+  width: 500px;
+  text-align: center;
+  background-color: white;
+}
+
+.main-list{
+  list-style: none;
+  padding: 50px;
+  margin: 0px 50px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 50px;
+}
+
+.main-list-item{
+  border: 2px solid silver;
+  z-index: 4;
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+}
+
+.pokemon__wrapper-fist{
+  background-color: silver;
+  position: relative;
+  flex-grow: 2;
+  min-height: 140px;
+}
+
+.pokemon__id{
+  text-align: left;
+  background-color: rgb(219, 218, 218);
+  color: rgb(187, 156, 116);
+  padding: 5px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-size: 12px;
+}
+
+.pokemon__name{
+  text-transform: capitalize;
+  font-size: 18px;
+  font-weight: 400;
+  margin: 5px 0;
+}
+
+.pokemon__wrapper-second{
+  background-color: white;
+  padding: 5px;
+  text-align: left;
+}
+
+.pokemon__types{
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+}
+
+.pokemon__types-item{
+ border: solid 1px silver;
+ border-radius: 25%;
+ padding: 3px;
+ margin: 2px;
+ font-size: 12px;
+ text-transform: uppercase;
+}
+
+.footer-content{
+  font-size: 14px;
+  font-weight: 200;
+  padding: 15px;
 }
