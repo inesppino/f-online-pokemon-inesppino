@@ -101,7 +101,7 @@ class App extends Component {
       <React.Fragment>
         <div className="page">
           <Header />
-          <Main filterPokemons={this.filterPokemons()} getFilter={this.getFilter}/>
+          <Main filterPokemons={this.filterPokemons()} getFilter={this.getFilter} havePokemons={this.state.havePokemons}/>
           <Footer />
         </div>
       </React.Fragment>

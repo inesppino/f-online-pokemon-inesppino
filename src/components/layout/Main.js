@@ -4,13 +4,13 @@ import PokeList from '../PokeList';
 
 class Main extends Component {
   render() {
-    const { filterPokemons, getFilter } = this.props;
+    const { filterPokemons, getFilter, havePokemons } = this.props;
 
     return (
         <main className="main">
             <div className="main-wrapper">
                 <Filter getFilter={getFilter}/>
-                <PokeList filterPokemons={filterPokemons}/>
+                <PokeList filterPokemons={filterPokemons} havePokemons={havePokemons}/>
             </div>
         </main>
     );
