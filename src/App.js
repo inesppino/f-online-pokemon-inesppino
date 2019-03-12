@@ -14,11 +14,7 @@ class App extends Component {
       query: '',
     };
 
-    this.paintPokemonList = this.paintPokemonList.bind(this);
     this.getFilter = this.getFilter.bind(this);
-    this.filterPokemons = this.filterPokemons.bind(this);
-    this.getPokemons = this.getPokemons.bind(this);
-    this.getSavedLocalStorage = this.getSavedLocalStorage.bind(this);
   }
 
   componentDidMount() {
@@ -30,8 +26,8 @@ class App extends Component {
   }
   
   getSavedLocalStorage(){
-    if(localStorage.getItem('poke') !== null){
-      const savePokemon = JSON.parse(localStorage.getItem('poke'));
+    if(localStorage.getItem('pokeList') !== null){
+      const savePokemon = JSON.parse(localStorage.getItem('pokeList'));
       this.setState({
         pokeList: savePokemon,
         havePokemons: true
@@ -50,6 +46,7 @@ class App extends Component {
           pokemonUrl.push(data);
           this.getPokemons(pokemonUrl);
         })
+        return getUrl;
       });
     })
     .catch(error => alert(`Ha ocurrido un error: ${error}`));
@@ -63,7 +60,7 @@ class App extends Component {
       poke.types.map(pokeTypes => {
         return types.push(pokeTypes.type.name);
       })
-
+      
       let pokemonJson = {
         'id': poke.id,
         'name': poke.name,
