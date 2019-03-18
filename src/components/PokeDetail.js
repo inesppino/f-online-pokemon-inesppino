@@ -15,6 +15,10 @@ class PokeDetail extends Component {
                 <ul className="pokemon__types">{pokemon.type.map((i, k) => { 
                     return <li className="pokemon__types-item" key={k}>{i}</li> })}
                 </ul>
+                <div className="pokemon__evolution">
+                    <h3 className="pokemon__evolution-title">Evoluciona de:</h3>
+                    <p className="pokemon__evolution-result">{pokemon.evolution}</p>
+                </div>
             </div>
         </div>
     );

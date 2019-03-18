@@ -19,6 +19,7 @@ class App extends Component {
 
   componentDidMount() {
     this.getSavedLocalStorage();
+    // this.paintPokemonList();
   }
 
   saveLocalStorage(idNumber, pokeList){
@@ -47,7 +48,7 @@ class App extends Component {
           this.getPokemons(pokemonUrl);
         })
         return getUrl;
-      });
+      }); 
     })
     .catch(error => alert(`Ha ocurrido un error: ${error}`));
   }
@@ -60,13 +61,24 @@ class App extends Component {
       poke.types.map(pokeTypes => {
         return types.push(pokeTypes.type.name);
       })
-      
+
       let pokemonJson = {
         'id': poke.id,
         'name': poke.name,
         'type': types,
-        'image': poke.sprites.front_default
+        'image': poke.sprites.front_default,
+        'evolution': ''
       }
+
+      const evolutionUrl = fetch(poke.species.url).then(response => response.json());
+      evolutionUrl.then(data => {
+        const evolved = data.evolves_from_species;
+        if (evolved !== null){
+         return pokemonJson.evolution = evolved.name;
+        } else {
+          return pokemonJson.evolution = '';
+        }
+      })
 
       pokemonData.push(pokemonJson);
 
