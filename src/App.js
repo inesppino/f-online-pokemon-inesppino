@@ -74,20 +74,18 @@ class App extends Component {
       evolutionUrl.then(data => {
         const evolved = data.evolves_from_species;
         if (evolved !== null){
-         return pokemonJson.evolution = evolved.name;
+         pokemonJson.evolution = evolved.name;
         } else {
-          return pokemonJson.evolution = '';
+          pokemonJson.evolution = '';
         }
+        pokemonData.push(pokemonJson);
+
+        this.setState({
+          pokeList: pokemonData.sort(((a, b) => a.id - b.id)),
+          havePokemons: true
+        })
       })
 
-      pokemonData.push(pokemonJson);
-
-      this.setState({
-        pokeList: pokemonData.sort(((a, b) => a.id - b.id)),
-        havePokemons: true
-      })
-
-      return pokemonData;
     });
     
     this.saveLocalStorage(this.state.pokeList,'pokeList');

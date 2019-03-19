@@ -17,7 +17,7 @@ class PokeDetail extends Component {
                 </ul>
                 <div className="pokemon__evolution">
                     <h3 className="pokemon__evolution-title">Evoluciona de:</h3>
-                    <p className="pokemon__evolution-result">{pokemon.evolution}</p>
+                    <p className="pokemon__evolution-result">Nombre: {pokemon.evolution}</p>
                 </div>
             </div>
         </div>
