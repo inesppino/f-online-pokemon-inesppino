@@ -6,8 +6,8 @@ class PokeCard extends Component {
         const { myChoice } = this.props;
         const choiceId = this.props.match.params.id;
 
-        if (myChoice.length > 0 && choiceId < myChoice.length) {
-            const pokemon = myChoice[choiceId];
+        if (myChoice.length > 0 && choiceId <= myChoice.length) {
+            const pokemon = myChoice[choiceId - 1];
 
             return (
                 <React.Fragment>

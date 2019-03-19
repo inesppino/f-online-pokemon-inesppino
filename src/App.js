@@ -21,7 +21,6 @@ class App extends Component {
 
   componentDidMount() {
     this.getSavedLocalStorage();
-    // this.paintPokemonList();
   }
 
   saveLocalStorage(idNumber, pokeList){
