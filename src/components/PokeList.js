@@ -10,7 +10,7 @@ class PokeList extends Component {
           <ul className="main-list">
               {filterPokemons.map(pokemon => {
               return (
-                  <li className="main-list-item" key={pokemon.id}>
+                  <li className="main-list-item" id={pokemon.id} key={pokemon.id}>
                       <PokeDetail pokemon={pokemon}/>
                   </li>
               )

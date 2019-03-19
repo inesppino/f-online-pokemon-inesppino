@@ -4,6 +4,8 @@ import { PokeApi } from './services/PokeApi';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import Main from './components/layout/Main';
+import PokeCard from './components/PokeCard';
+import { Switch, Route } from 'react-router-dom';
 
 class App extends Component {
   constructor(props) {
@@ -111,7 +113,13 @@ class App extends Component {
       <React.Fragment>
         <div className="page">
           <Header />
-          <Main filterPokemons={this.filterPokemons()} getFilter={this.getFilter} havePokemons={this.state.havePokemons}/>
+          <Switch>
+            <Route exact path="/" render={() => ( 
+              <Main filterPokemons={this.filterPokemons()} getFilter={this.getFilter} havePokemons={this.state.havePokemons}/>)}/>
+
+            <Route path="/pokemon/:id" render={props => (
+              <PokeCard match={props.match} myChoice={this.state.pokeList}/> )}/>
+          </Switch>
           <Footer />
         </div>
       </React.Fragment>
